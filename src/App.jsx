@@ -26,10 +26,13 @@ function App() {
       <div id="app">
       <div className='main'>
         <h1>ChatWith AI 🖤</h1>
-        <textarea placeholder='Enter the Question' value={question} onChange={(e)=> setQuestion(e.target.value)}></textarea>
+        <textarea placeholder='Ask me anything...' value={question} onChange={(e)=> setQuestion(e.target.value)}></textarea>
+        <div className="btn-box">
         <button onClick={generateAnswer}>Submit</button>
+        <button onClick={() => {setQuestion(""); setAnswer("");}}>Clear</button>
+        </div>
         <div className="output">
-          <h3>Output:</h3>
+        <h3>Output:</h3>
         </div>
         <div className="output-Box">
           <pre>{answer}</pre>

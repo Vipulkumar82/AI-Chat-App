@@ -81,6 +81,14 @@ textarea:focus {
   word-wrap: break-word;
   overflow-y: auto;
 }
+
+.btn-box{
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
 button{
   color: rgba(255, 255, 255, 0.87);
   border-radius: 8px;
