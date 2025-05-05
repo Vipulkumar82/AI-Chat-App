@@ -5,6 +5,7 @@ import './index.css'
 function App() {
   return (
     <>
+      <div id="app">
       <div className='main'>
         <textarea placeholder='Enter the Question'></textarea>
         <button>Submit</button>
@@ -14,6 +15,8 @@ function App() {
         <div className="output-Box">
           Hey I'm The Output
         </div>
+      </div>
+        <footer className='footer'>&copy;All Rights are reserved by @Vipul Thakur♠️</footer>
       </div>
     </>
   )
