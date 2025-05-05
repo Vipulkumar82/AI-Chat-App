@@ -7,34 +7,57 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+body, html {
   margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f8;
+  height: 100%;
+  color: #030908;
+}
+
+textarea {
+  width: 100%;
+  max-width: 800px;
+  padding: 14px 16px;
+  margin: 20px auto;
+  display: block;
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  transition: border 0.2s ease;
+  color: #10a37f;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #10a37f;
+  box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
+}
+
+.main{
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.output{
+  width: 100%;
+  display: flex;
+  justify-content: left;
 }
-
+.output h3{
+  margin-left: 40px;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -52,17 +75,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
