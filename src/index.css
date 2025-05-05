@@ -58,6 +58,19 @@ textarea:focus {
 .output h3{
   margin-left: 40px;
 }
+.output-Box {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  font-size: 16px;
+  color: #333;
+  white-space: pre-wrap;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;

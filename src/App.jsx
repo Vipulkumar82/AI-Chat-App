@@ -11,6 +11,9 @@ function App() {
         <div className="output">
           <h3>Output:</h3>
         </div>
+        <div className="output-Box">
+          Hey I'm The Output
+        </div>
       </div>
     </>
   )
