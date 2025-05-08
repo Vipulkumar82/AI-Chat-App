@@ -81,6 +81,21 @@ textarea:focus {
   word-wrap: break-word;
   overflow-y: auto;
 }
+.chat-box {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.chat-entry {
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
 .user-question {
   background-color: #e6f4ea;
   padding: 12px 16px;
@@ -202,3 +217,5 @@ button:focus-visible {
     margin-right: 4px;
   }
 }
+
+
