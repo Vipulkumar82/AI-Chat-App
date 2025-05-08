@@ -1,12 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import './index.css'
 import axios from 'axios'
+import { FaMicrophone } from "react-icons/fa";
 
 function App() {
   const [question, setQuestion] = useState("");
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    // Setup recognition of Voice Input 
+    if ('webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setQuestion(transcript);
+      };
+
+      recognition.onerror = (event) => {
+        alert('Voice input error: ' + event.error);
+      };
+
+      recognitionRef.current = recognition;
+    }
+  }, []);
+
+  const startVoiceInput = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+    } else {
+      alert("Your browser does not support voice input.");
+    }
+  };
+
 
   async function generateAnswer() {
     if (!question.trim()) return;
@@ -37,11 +71,15 @@ function App() {
     <div id="app">
       <div className='main'>
         <h1>ChatWith AI 🖤</h1>
-        <textarea
+        <div className="textarea-wrapper">
+                  <textarea
           placeholder='Ask me anything...'
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         ></textarea>
+        <FaMicrophone className="mic-icon" onClick={startVoiceInput} />
+
+        </div>
 
         <div className="btn-box">
           <button onClick={generateAnswer} disabled={loading}>

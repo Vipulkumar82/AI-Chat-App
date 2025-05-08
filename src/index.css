@@ -33,6 +33,32 @@ textarea {
   transition: border 0.2s ease;
   color: #10a37f;
 }
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.textarea-wrapper textarea {
+  width: 100%;
+  padding-right: 50px; /* space for mic icon */
+}
+
+.mic-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #10a37f;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.mic-icon:hover {
+  color: #0e7a61;
+}
 
 textarea:focus {
   outline: none;
