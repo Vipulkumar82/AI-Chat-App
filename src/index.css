@@ -81,6 +81,43 @@ textarea:focus {
   word-wrap: break-word;
   overflow-y: auto;
 }
+.user-question {
+  background-color: #e6f4ea;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  border-left: 4px solid #10a37f;
+  word-wrap: break-word;
+}
+
+.bot-answer {
+  background-color: #f1f3f4;
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 4px solid #1a73e8;
+  line-height: 1.6;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.bot-answer pre {
+  margin: 0;
+  font-family: inherit;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+.bot-answer ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.bot-answer li {
+  margin-bottom: 6px;
+}
 
 .btn-box{
   height: 40px;
@@ -115,4 +152,53 @@ button:focus-visible {
   padding: 12px 20px;
   border-top: 1px solid #ccc;
   font-size: 14px;
+  margin-top: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .main h1 {
+    font-size: 1.5rem;
+  }
+
+  textarea {
+    width: 80%;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .output h3 {
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  .output-Box {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .btn-box {
+    flex-direction: row;
+    gap: 10px;
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  textarea {
+    min-height: 80px;
+  }
+
+  .main {
+    padding: 10px;
+  }
+
+  .output h3 {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
 }
