@@ -391,23 +391,30 @@ function App() {
       ) : (
         // Chat Application
         <div id="app" className="chat-app">
-          <header className="chat-header">
-            <button 
-              className="back-btn"
-              onClick={() => setShowChat(false)}
-            >
-              ← Back to Home
-            </button>
-            <h1>ChatWith AI 🖤</h1>
-            <button 
-              className="clear-btn" 
-              onClick={() => {
-                setQuestion("");
-                setConversations([]);
-              }}
-            >
-              Clear Chat
-            </button>
+                    <header className="chat-header">
+            <div className="header-left">
+              <button 
+                className="back-btn"
+                onClick={() => setShowChat(false)}
+              >
+                ← Back to Home
+              </button>
+            </div>
+            <div className="header-center">
+              <h1>ChatWith AI 🖤</h1>
+            </div>
+            <div className="header-right">
+              <button 
+                className="clear-btn" 
+                onClick={() => {
+                  setQuestion("");
+                  setAnswer("");
+                  setMessages([]);
+                }}
+              >
+                Clear Chat
+              </button>
+            </div>
           </header>
 
           <div className="chat-container">

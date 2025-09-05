@@ -12,6 +12,169 @@ body, html {
   scroll-behavior: smooth;
 }
 
+/* Mobile Touch Optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  box-sizing: border-box;
+}
+
+button, .clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+button:active, .clickable:active {
+  transform: scale(0.95);
+}
+
+/* Prevent zoom on iOS */
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+textarea {
+  font-size: 16px !important;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Better scrolling on mobile */
+.messages-container {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Safe area handling for devices with notches */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .chat-header {
+    padding-top: calc(env(safe-area-inset-top) + 15px);
+  }
+  
+  .input-container {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 15px);
+  }
+  
+  .hero-section {
+    padding-top: calc(100px + env(safe-area-inset-top));
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (pointer: coarse) {
+  .send-btn, .mic-icon, .back-btn, .clear-btn, .copy-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .feature-card, .about-feature {
+    padding: 30px 25px;
+  }
+  
+  .cta-button {
+    min-height: 50px;
+    padding: 16px 40px;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .brain-pulse::before,
+  .brain-pulse::after,
+  .pulse-ring,
+  .recording-dot {
+    animation: none !important;
+  }
+}
+
+/* Mobile Button Fix - Ensure button works on small screens */
+@media screen and (max-width: 768px) {
+  .cta-button {
+    display: inline-block !important;
+    position: relative !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(0, 212, 217, 0.3) !important;
+    min-height: 50px !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+  }
+  
+  .cta-button:active {
+    transform: scale(0.95) !important;
+  }
+  
+  .cta-button:focus {
+    outline: 2px solid #00d4d9 !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Ensure hero visual doesn't interfere with button */
+  .hero-visual {
+    pointer-events: none !important;
+  }
+  
+  .hero-visual * {
+    pointer-events: none !important;
+  }
+  
+  /* Make sure brain animation doesn't block button */
+  .brain-pulse,
+  .brain-pulse::before,
+  .brain-pulse::after {
+    pointer-events: none !important;
+  }
+  
+  .ai-brain-icon {
+    pointer-events: none !important;
+  }
+  
+  /* Ensure mic icon is always visible and functional on mobile */
+  .mic-icon {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(0, 255, 245, 0.3) !important;
+    z-index: 100 !important;
+  }
+  
+  .mic-container {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 100 !important;
+  }
+  
+  .input-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 44px !important;
+  }
+  
+  .input-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+}
+
 /* Animated background particles */
 body::before {
   content: '';
@@ -652,6 +815,10 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-btn:hover {
@@ -675,6 +842,24 @@ body::before {
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 2;
+  gap: 20px;
+}
+
+.chat-header .header-left {
+  display: flex;
+  align-items: center;
+}
+
+.chat-header .header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-header .header-right {
+  display: flex;
+  align-items: center;
 }
 
 .chat-header h1 {
@@ -684,6 +869,7 @@ body::before {
   color: #f5f5f5;
   font-family: 'Orbitron', monospace;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .clear-btn {
@@ -700,6 +886,10 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .clear-btn:hover {
@@ -1209,6 +1399,8 @@ body::before {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-height: 50px;
+  flex-shrink: 0;
 }
 
 /* Microphone Container with Recording Animation */
@@ -1217,6 +1409,8 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .mic-icon {
@@ -1231,6 +1425,13 @@ body::before {
   background: linear-gradient(135deg, rgba(0, 255, 245, 0.15) 0%, rgba(162, 155, 254, 0.15) 100%);
   border: 1px solid rgba(0, 255, 245, 0.4);
   backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .mic-icon:hover {
@@ -1424,21 +1625,100 @@ body::before {
 }
 
 /* Responsive Design */
+
+/* Desktop Large (1200px and above) - already handled in base styles */
+
+@media screen and (max-width: 1024px) {
+  /* Landing Page Tablet */
+  .hero-content {
+    gap: 40px;
+    padding: 0 30px;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .container {
+    padding: 0 30px;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .about-features {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  /* Chat App Tablet */
+  .messages-container {
+    padding: 20px 30px;
+  }
+  
+  .input-container {
+    padding: 20px 30px;
+  }
+  
+  .input-wrapper {
+    max-width: 95%;
+  }
+  
+  .recording-status {
+    max-width: 95%;
+  }
+}
+
+/* Tablet Portrait (768px and below) */
 @media screen and (max-width: 768px) {
   /* Landing Page Mobile */
   .hero-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     text-align: center;
     padding: 20px;
+    align-items: center;
+  }
+  
+  .hero-text {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-visual {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
   }
   
   .hero-title {
     font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
   }
   
   .hero-subtitle {
     font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    order: 3;
+    padding: 18px 36px;
+    font-size: 1.1rem;
+    margin-top: 25px;
+    min-width: 250px;
+    z-index: 10;
+    position: relative;
+    cursor: pointer;
+    pointer-events: all;
   }
   
   .ai-brain-icon {
@@ -1452,10 +1732,20 @@ body::before {
   
   .section-title {
     font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .section-description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
   }
   
   .cta-title {
     font-size: 2.2rem;
+  }
+  
+  .cta-description {
+    font-size: 1.2rem;
   }
   
   .about-features {
@@ -1479,6 +1769,14 @@ body::before {
     gap: 30px;
   }
   
+  .about-section, .features-section, .cta-section {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
   /* Chat App Mobile */
   body::before {
     animation-duration: 30s;
@@ -1490,96 +1788,185 @@ body::before {
   }
   
   .chat-header {
-    padding: 12px 16px;
-    min-height: 50px;
+    padding: 15px 20px;
+    min-height: 60px;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  
+  .chat-header .header-left,
+  .chat-header .header-right {
+    min-width: auto;
+  }
+  
+  .chat-header .header-center {
+    flex: 1;
+    text-align: center;
   }
   
   .chat-header h1 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+  
+  .back-btn {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+  
+  .clear-btn {
+    font-size: 12px;
+    padding: 8px 15px;
   }
   
   .messages-container {
-    padding: 12px 16px;
-  }
-  
-  .input-container {
-    padding: 12px 16px;
-  }
-  
-  .input-wrapper {
-    max-width: 100%;
-  }
-  
-  .recording-status {
-    max-width: 100%;
+    padding: 15px 20px;
   }
   
   .message-content {
     max-width: 85%;
-    font-size: 13px;
-    padding: 10px 14px;
+    font-size: 14px;
+    padding: 12px 16px;
   }
   
   .ai-formatted .text-content {
-    padding: 10px 14px;
+    padding: 12px 16px;
   }
   
   .code-block {
     font-size: 12px;
-    padding: 12px;
+    padding: 15px;
   }
   
   .code-block-header {
-    padding: 6px 10px;
+    padding: 8px 12px;
   }
   
   .copy-btn {
     font-size: 11px;
-    padding: 3px 6px;
+    padding: 4px 8px;
   }
   
   .input-container {
-    padding: 12px 16px;
+    padding: 15px 20px;
   }
   
-  .clear-btn, .back-btn {
+  .input-wrapper {
+    max-width: 100%;
+    padding: 10px 12px;
+  }
+  
+  .recording-status {
+    max-width: 100%;
+    padding: 12px 16px;
     font-size: 12px;
-    padding: 6px 12px;
   }
   
   .welcome-message {
     margin: 40px auto 30px;
-    padding: 20px 16px;
-    max-width: 400px;
+    padding: 25px 20px;
+    max-width: 90%;
   }
   
   .welcome-message h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .welcome-message p {
-    font-size: 0.9rem;
+    font-size: 1rem;
+  }
+  
+  .message-avatar {
+    font-size: 10px;
+    padding: 5px 8px;
+    min-width: 28px;
+  }
+  
+  .send-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+  }
+  
+  .mic-icon {
+    padding: 10px;
+    font-size: 16px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .input-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+  }
+  
+  .mic-container {
+    display: flex !important;
+    position: relative;
+    z-index: 10;
   }
 }
 
+/* Mobile Large (480px and below) */
 @media screen and (max-width: 480px) {
   /* Landing Page Small Mobile */
   .hero-section {
-    padding: 80px 0;
+    padding: 60px 0;
+    min-height: 90vh;
+  }
+  
+  .hero-content {
+    display: flex !important;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+    padding: 15px;
+    align-items: center;
+  }
+  
+  .hero-text {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-visual {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
   }
   
   .hero-title {
     font-size: 2rem;
     line-height: 1.1;
+    margin-bottom: 15px;
   }
   
   .hero-subtitle {
     font-size: 1rem;
+    margin-bottom: 25px;
   }
   
   .cta-button {
-    padding: 14px 28px;
+    order: 3;
+    padding: 16px 32px;
     font-size: 1rem;
+    margin-top: 20px;
+    min-width: 220px;
+    z-index: 10;
+    position: relative;
+    cursor: pointer;
+    pointer-events: all;
+    touch-action: manipulation;
   }
   
   .ai-brain-icon {
@@ -1597,14 +1984,22 @@ body::before {
   
   .section-title {
     font-size: 1.8rem;
-  }
-  
-  .cta-title {
-    font-size: 1.9rem;
+    margin-bottom: 12px;
   }
   
   .section-description {
     font-size: 1rem;
+    margin-bottom: 35px;
+  }
+  
+  .cta-title {
+    font-size: 1.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .cta-description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
   }
   
   .about-feature, .feature-card {
@@ -1614,10 +2009,26 @@ body::before {
   .feature-icon-container {
     width: 60px;
     height: 60px;
+    margin-bottom: 20px;
   }
   
   .feature-main-icon {
     font-size: 1.5rem;
+  }
+  
+  .about-feature .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .about-feature h3, .feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .about-feature p, .feature-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
   
   .container {
@@ -1626,28 +2037,301 @@ body::before {
   
   .footer-links {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
+  }
+  
+  .footer-brand h3 {
+    font-size: 1.5rem;
+  }
+  
+  .footer-brand p {
+    font-size: 0.9rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .footer-section a {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  .footer-bottom p {
+    font-size: 0.8rem;
   }
   
   /* Chat App Small Mobile */
   .chat-header {
-    padding: 10px 12px;
-    flex-direction: column;
+    padding: 12px 15px;
+    min-height: 50px;
     gap: 8px;
+  }
+  
+  .chat-header .header-left {
+    min-width: 80px;
+  }
+  
+  .chat-header .header-right {
+    min-width: 80px;
+  }
+  
+  .chat-header .header-center {
+    flex: 1;
     text-align: center;
-    min-height: auto;
   }
   
   .chat-header h1 {
     font-size: 1.2rem;
   }
   
+  .back-btn, .clear-btn {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  
   .messages-container {
-    padding: 8px 12px;
+    padding: 10px 15px;
   }
   
   .message-content {
     max-width: 90%;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+  
+  .ai-formatted .text-content {
+    padding: 10px 14px;
+  }
+  
+  .code-block {
+    font-size: 11px;
+    padding: 12px;
+  }
+  
+  .code-block-header {
+    padding: 6px 10px;
+  }
+  
+  .copy-btn {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  
+  .code-language {
+    font-size: 10px;
+  }
+  
+  .input-container {
+    padding: 12px 15px;
+  }
+  
+  .input-wrapper {
+    border-radius: 20px;
+    padding: 8px 10px;
+  }
+  
+  .input-wrapper textarea {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+  
+  .recording-status {
+    padding: 10px 15px;
+    font-size: 11px;
+    border-radius: 25px;
+  }
+  
+  .recording-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .welcome-message {
+    margin: 30px auto 20px;
+    padding: 20px 15px;
+    max-width: 95%;
+  }
+  
+  .welcome-message h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-message p {
+    font-size: 0.9rem;
+  }
+  
+  .message-avatar {
+    font-size: 9px;
+    padding: 4px 6px;
+    min-width: 24px;
+  }
+  
+  .send-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+  
+  .mic-icon {
+    padding: 8px;
+    font-size: 14px;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .input-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+  }
+  
+  .mic-container {
+    display: flex !important;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .pulse-ring {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .typing-indicator span {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .message-pair {
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+}
+
+/* Mobile Extra Small (360px and below) */
+@media screen and (max-width: 360px) {
+  /* Landing Page Extra Small */
+  .hero-content {
+    display: flex !important;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 12px;
+    align-items: center;
+  }
+  
+  .hero-text {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-visual {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .cta-button {
+    order: 3;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    margin-top: 15px;
+    min-width: 200px;
+    z-index: 10;
+    position: relative;
+    cursor: pointer;
+    pointer-events: all;
+    touch-action: manipulation;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  .cta-title {
+    font-size: 1.7rem;
+  }
+  
+  .about-feature, .feature-card {
+    padding: 20px 15px;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
+  /* Chat App Extra Small */
+  .chat-header {
+    padding: 10px 12px;
+    gap: 5px;
+  }
+  
+  .chat-header .header-left {
+    min-width: 70px;
+  }
+  
+  .chat-header .header-right {
+    min-width: 70px;
+  }
+  
+  .chat-header .header-center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .chat-header h1 {
+    font-size: 1.1rem;
+  }
+  
+  .back-btn, .clear-btn {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  
+  /* Shorter button text for very small screens */
+  .back-btn {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+  
+  .clear-btn {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+  
+  .messages-container {
+    padding: 8px 12px;
+  }
+  
+  .input-container {
+    padding: 10px 12px;
+  }
+  
+  .message-content {
     font-size: 12px;
     padding: 8px 12px;
   }
@@ -1656,53 +2340,16 @@ body::before {
     padding: 8px 12px;
   }
   
-  .code-block {
-    font-size: 11px;
-    padding: 10px;
-  }
-  
-  .code-block-header {
-    padding: 5px 8px;
-  }
-  
-  .copy-btn {
-    font-size: 10px;
-    padding: 2px 4px;
-  }
-  
-  .code-language {
-    font-size: 10px;
-  }
-  
-  .input-container {
-    padding: 10px 12px;
-  }
-  
-  .input-wrapper {
-    max-width: 100%;
-  }
-  
-  .recording-status {
-    max-width: 100%;
-  }
-  
   .welcome-message {
-    margin: 30px auto 20px;
-    padding: 16px 12px;
-    max-width: 320px;
+    padding: 15px 12px;
   }
   
   .welcome-message h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .welcome-message p {
     font-size: 0.85rem;
-  }
-  
-  .input-wrapper {
-    border-radius: 18px;
-    padding: 8px 10px;
   }
   
   .send-btn {
@@ -1712,8 +2359,131 @@ body::before {
   }
   
   .mic-icon {
-    padding: 8px;
-    font-size: 14px;
+    padding: 6px;
+    font-size: 13px;
+    min-width: 34px;
+    min-height: 34px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .input-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 5px;
+    min-height: 38px;
+  }
+  
+  .mic-container {
+    display: flex !important;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+/* Landscape Mobile (max-height: 500px) for better landscape experience */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 80vh;
+    padding: 40px 0;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .ai-brain-icon {
+    font-size: 3.5rem;
+  }
+  
+  .about-section, .features-section, .cta-section {
+    padding: 50px 0;
+  }
+  
+  .chat-header {
+    padding: 8px 15px;
+    min-height: 40px;
+    gap: 10px;
+  }
+  
+  .chat-header .header-left,
+  .chat-header .header-right {
+    min-width: 70px;
+  }
+  
+  .chat-header .header-center {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .chat-header h1 {
+    font-size: 1.1rem;
+  }
+  
+  .back-btn, .clear-btn {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+  
+  .welcome-message {
+    margin: 20px auto;
+    padding: 15px;
+  }
+}
+
+/* Tablet specific optimizations */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  .hero-content {
+    gap: 50px;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .about-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+  }
+  
+  .chat-header {
+    padding: 20px 30px;
+  }
+  
+  .messages-container {
+    padding: 25px 30px;
+  }
+  
+  .input-container {
+    padding: 25px 30px;
+  }
+}
+
+/* iPad Pro and large tablets */
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .hero-content {
+    gap: 60px;
+  }
+  
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .about-features {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
